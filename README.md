@@ -19,7 +19,7 @@ It is a classroom and outreach demo of how much a phone gives away passively. It
 | Line on the serial monitor | Meaning |
 |---|---|
 | `MACs heard (any distance)` | Every device whose probe requests reached the ESP32 in the time window, including devices in the corridor or next room |
-| `MACs in this room` | Only devices with RSSI ≥ the room threshold (default −70 dBm) |
+| `MACs in this room` | Only devices with RSSI ≥ the room threshold (default −80 dBm) |
 | `I count N devices in this room` | Estimate after merging randomized MACs that share the same capability fingerprint |
 | `PIR (GPIO27)` | `MOTION` / `idle`, seconds since the last motion, number of triggers |
 | `Real head count` | The number you typed, devices per person, and the difference from the estimate |
@@ -137,17 +137,6 @@ This project is for education and demonstration.
 - **Ask first**: if you collect data in a class or public space, tell the people present or get permission first.
 
 ---
-
-## 中文简介
-
-**"你的手机在暴露你"**：ESP32 不连接任何网络，只监听手机在后台广播的 Wi-Fi 探测帧（Probe Request），估算出"这个房间里有 N 台设备"。它可以和你输入的真实人数、PIR 人体感应器的结果放在一起对比。
-
-- **原理**：ESP32 进入监听模式，在 1–13 信道之间轮流切换，按信号强度筛出本房间内的设备。随机化的 MAC 按设备能力指纹合并后再计数。
-- **接线**：PIR 的 OUT 接 **GPIO27**，VCC 接 **VIN/5V**，GND 接 **GND**。**不要接 CLK、SD0–SD3、CMD（GPIO 6–11）**，接上会导致烧录失败或无限重启。
-- **编译烧录**：`idf.py set-target esp32 && idf.py -p <串口> flash monitor`
-- **串口命令**：输入数字设置真实人数，`t-65` 调信号阈值，`w120` 调时间窗口，`c` 清空。
-- **用途**：隐私科普演示、房间占用和人流估算、多种传感器的对比实验。
-- **注意**：仅用于教学演示。程序不保存也不上传任何数据，请勿用于追踪他人。
 
 ## License
 

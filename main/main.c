@@ -44,7 +44,7 @@
 #define HOP_INTERVAL_MS     250
 #define REPORT_PERIOD_MS    5000
 #define DEFAULT_WINDOW_S    60
-#define DEFAULT_RSSI_MIN    (-70)
+#define DEFAULT_RSSI_MIN    (-80)
 #define CONSOLE_UART        UART_NUM_0
 
 static const char *TAG = "probe";
